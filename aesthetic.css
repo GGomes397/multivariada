@@ -1,0 +1,231 @@
+/* ==========================================================================
+ESTILOS GERAIS & PÁGINA (Normas ABNT com Acabamento Editorial Moderno)
+========================================================================== */
+
+:root {
+--text-primary: #1f2937;       /* Grafite escuro para leitura confortável /
+--text-muted: #4b5563;         / Ardósia secundário /
+--accent-primary: #0f4c81;     / Azul petróleo elegante para títulos /
+--accent-subtle: #2563eb;      / Azul clássico para links e detalhes /
+--bg-page: #ffffff;            / Papel branco /
+--bg-canvas: #f3f4f6;          / Fundo suave da tela de leitura /
+--border-color: #e5e7eb;       / Divisores sutis */
+}
+
+html {
+background-color: var(--bg-canvas);
+scroll-behavior: smooth;
+}
+
+body {
+font-family: "Liberation Serif", "Times New Roman", Times, serif;
+font-size: 12pt;
+line-height: 1.5;
+color: var(--text-primary);
+padding: 3cm 2cm 2cm 3cm;      /* Padrão ABNT: Sup. 3cm, Dir. 2cm, Inf. 2cm, Esq. 3cm /
+max-width: 210mm;              / Largura folha A4 */
+margin: 30px auto;
+background: var(--bg-page);
+box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08),
+0 8px 10px -6px rgba(15, 23, 42, 0.04);
+box-sizing: border-box;
+border-radius: 4px;
+}
+
+/* ==========================================================================
+ALINHAMENTO E CORPO DE TEXTO
+========================================================================== */
+
+p, li, dd {
+text-align: justify;
+text-indent: 1.25cm;           /* Parágrafo ABNT */
+margin-top: 0;
+margin-bottom: 0.35rem;
+hyphens: auto;
+}
+
+/* ==========================================================================
+CITAÇÕES DIRETAS LONGAS (> 3 LINHAS)
+========================================================================== */
+
+blockquote {
+font-size: 10.5pt;
+line-height: 1.15;
+margin: 1rem 0 1rem 4cm;       /* Recuo ABNT de 4cm da margem esquerda */
+padding-left: 0.8rem;
+text-align: justify;
+color: var(--text-muted);
+border-left: 3px solid var(--accent-primary);
+background: #f8fafc;
+padding-top: 0.4rem;
+padding-bottom: 0.4rem;
+border-radius: 0 4px 4px 0;
+}
+
+blockquote p {
+text-indent: 0;
+margin-bottom: 0.2rem;
+}
+
+/* ==========================================================================
+TÍTULOS E SEÇÕES
+========================================================================== */
+
+h1, .h1 {
+font-size: 14pt;
+font-weight: 700;
+text-align: left;
+color: var(--accent-primary);
+text-transform: uppercase;     /* Seções primárias ABNT */
+margin-top: 2rem;
+margin-bottom: 0.8rem;
+padding-bottom: 0.3rem;
+border-bottom: 1.5px solid var(--border-color);
+letter-spacing: 0.02em;
+}
+
+h2, .h2 {
+font-size: 12pt;
+font-weight: 700;
+text-align: left;
+color: var(--text-primary);
+margin-top: 1.4rem;
+margin-bottom: 0.5rem;
+}
+
+h3, .h3 {
+font-size: 12pt;
+font-weight: normal;
+font-style: italic;
+text-align: left;
+color: var(--text-primary);
+margin-top: 1rem;
+margin-bottom: 0.4rem;
+}
+
+/* Metadados do Quarto (Título, Autor, Subtítulo) */
+header#title-block-header {
+text-align: center;
+border-bottom: 2px solid var(--accent-primary);
+padding-bottom: 1.5rem;
+margin-bottom: 2.5rem;
+}
+
+header#title-block-header .title {
+font-size: 18pt;
+font-weight: 800;
+color: var(--accent-primary);
+text-transform: uppercase;
+margin-bottom: 0.3rem;
+}
+
+header#title-block-header .subtitle {
+font-size: 13pt;
+font-weight: 500;
+color: var(--text-muted);
+text-transform: capitalize;
+margin-bottom: 0.8rem;
+}
+
+header#title-block-header .author {
+font-size: 12pt;
+font-weight: 600;
+color: var(--text-primary);
+}
+
+/* ==========================================================================
+SUMÁRIO (TOC NO CORPO)
+========================================================================== */
+
+#TOC {
+background: #f8fafc;
+border: 1px solid var(--border-color);
+border-radius: 6px;
+padding: 1.2rem 1.8rem;
+margin: 2rem 0;
+}
+
+#TOC h2#toc-title {
+font-size: 12pt;
+font-weight: bold;
+color: var(--accent-primary);
+text-transform: uppercase;
+margin-top: 0;
+margin-bottom: 0.8rem;
+border-bottom: none;
+text-align: center;
+}
+
+#TOC ul {
+list-style-type: none;
+padding-left: 0;
+margin-bottom: 0;
+}
+
+#TOC li {
+text-indent: 0;
+text-align: left;
+margin-bottom: 0.4rem;
+font-size: 11pt;
+}
+
+#TOC a {
+color: var(--text-primary);
+text-decoration: none;
+transition: color 0.15s ease-in-out;
+}
+
+#TOC a:hover {
+color: var(--accent-primary);
+text-decoration: underline;
+}
+
+/* ==========================================================================
+LINKS E ELEMENTOS DE CITAÇÃO
+========================================================================== */
+
+a {
+color: var(--accent-subtle);
+text-decoration: none;
+}
+
+a:hover {
+text-decoration: underline;
+}
+
+/* ==========================================================================
+REFERÊNCIAS BIBLIOGRÁFICAS (ABNT)
+========================================================================== */
+
+#refs, .referencias {
+margin-top: 2rem;
+}
+
+#refs .csl-entry, .referencias p {
+text-indent: 0 !important;     /* Sem recuo de primeira linha /
+text-align: left;              / Alinhamento estritamente à esquerda /
+margin-bottom: 12pt;           / Espaçamento simples entre referências */
+line-height: 1.35;
+font-size: 11.5pt;
+}
+
+/* ==========================================================================
+IMPRESSÃO
+========================================================================== */
+
+@media print {
+html, body {
+background: #ffffff !important;
+box-shadow: none !important;
+margin: 0 !important;
+padding: 3cm 2cm 2cm 3cm !important;
+max-width: 100% !important;
+}
+
+#TOC {
+    border: none;
+    padding: 0;
+}
+
+
+}

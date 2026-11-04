@@ -1,0 +1,19 @@
+
+title:  "Trabalho Final "
+subtitle: "ÁNALISE mULTIVARIADA "
+author: "Gesielen Gomes"
+lang: pt-BR
+bibliography: referencias.bib
+csl: associacao-brasileira-de-normas-tecnicas.csl
+format:
+  html:
+    css: aesthetic.css
+    toc: true
+    toc-title: "SUMÁRIO"
+    toc-depth: 3
+    number-sections: true
+    toc-location: body
+execute:
+  echo: false      # Esconde todo o código ao longo do texto
+  warning: false   # Oculta avisos
+  message: false   # Oculta mensagens

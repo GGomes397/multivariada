@@ -1,0 +1,53 @@
+---
+title: "Aula 21/08"
+format: html
+editor: visual
+---
+
+## Álgebra Matricial x Dados
+
+A primeira parte da matéria da matéria de multivariada é basicamente vermos a como os dados que recebemos são na verdade vetores na forma de matrizes e que os conceitos de algebra linear podem ser aplicados nesses contextos
+
+```{r}
+data("iris")
+set.seed(666)
+idx <- sample(1:150,size = 10,replace = F)
+plot(iris[-5])
+```
+
+Sabemos que a norma é calculado da seguinte forma
+
+$$L_x={x}'x=\sqrt{{x_1}^{2}+{x_2}^{2}+...+{x_n}^{2}}$$
+
+e o ângulo entre dois vetores é dado por
+
+$$\cos\left( \theta \right)=\frac{{x}'y}{L_{x}L_{y}}$$
+
+A primeira coisa que vamos calcular é a norma entre um indice sorteado pra calcularmos a norma de alguns vetores e o produto interno , mas para fazemos isso nós devemos colocar os dados na origem e fazemos isso centralizando os nossos dados é como se achassemos um vetor que tenha a mesma norma só que na origem centralizar nos dá varios benificios que vão além da vizualização e eliminamos os efeitos de escala mesmo que parcialmente
+
+```{r}
+#eu quero os dados na origem pra eu calcular o angulo mas não quero que padronize
+#so centralize
+x_c <- scale(x,scale = F,center = T)
+```
+
+plotando como vetores
+
+```{r}
+#aqui eu to tentando vizualizar meus pontos como vetores 
+plot(Petal.Length~ Petal.Width,data = x_c, type='n', asp=1)
+# asp me dá a proporção y/x
+arrows(x0=0,y0=0,x1=x_c[,2],y1=x_c[,1], length = 0.15)
+text(x=x_c[,2],y=x_c[,1],labels = 1:10,cex=0.85,pos=3)
+```
+
+Para calcularmos o ângulo entre dois vetores precisamos da norma dos vetores e o produto interno entre esses vetores . Vamos fazer isso usando a formula e depois usando as particularidades de uma matriz .
+
+```{r}
+#produto interno
+xis <- x_c[6,]
+lx <- sqrt(t(xis)%*%xis)
+lx
+#função para conseguir o angulo entre os dez valores
+diag(x_c%*%t(x_c))
+```

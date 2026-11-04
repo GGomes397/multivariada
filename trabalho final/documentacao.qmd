@@ -1,0 +1,29 @@
+---
+title: "documentacao"
+format: html
+---
+
+A primeira coisa que eu fiz foi Procurar dados relacionados oss dados da eleição de 2018 porque a nossa hipótese de trabalho era de que as cidades em que o Bolsonaro venceu a corrente de pensamentos negacionistas a vacina . então primeiro baixei os dados dessa eleição dos dois estados
+
+```{r}
+#| label: Pacotes usados
+#| include: false
+library(readxl)
+library(tidyverse)
+library(ggplot2)
+library(dplyr)
+library(readr)
+```
+
+```{r}
+#| label: Dados originais 
+Covid19MGSP <- read_excel("trabalho final/Covid19MGSP.xlsx")
+eleicoes_mg <- read_delim('trabalho final/resultado-municipio_presidente_t2_2018_mg.csv',
+                          delim = ';', locale = locale(encoding = 'latin1'))
+eleicoes_sp <- read_delim('trabalho final/resultado-municipio_presidente_t2_2018_sp.csv', 
+                          delim = ';', locale = locale(encoding = 'latin1'))
+```
+
+## Limpeza e transformação
+
+Eu queria a quantidade de votos válidos
