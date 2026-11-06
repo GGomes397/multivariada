@@ -3,14 +3,15 @@ library(tidyverse)
 library(ggplot2)
 library(dplyr)
 library(readr)
+library(viridis)
+library(RColorBrewer)
 Covid19MGSP <- read_excel("trabalho final/Covid19MGSP.xlsx")
 
-str(Covid19MGSP)
 
 eleicoes_mg <- read_delim('trabalho final/resultado-municipio_presidente_t2_2018_mg.csv', delim = ';', locale = locale(encoding = 'latin1'))
 eleicoes_sp <- read_delim('trabalho final/resultado-municipio_presidente_t2_2018_sp.csv', delim = ';', locale = locale(encoding = 'latin1'))
 glimpse(eleicoes_sp)
-
+colnames(eleicoes_mg)
 remove_col <- function(df) {
   manter <- c("sg_uf", "nm_municipio", "qt_votos_nom_validos","nm_candidato")
   
@@ -19,6 +20,7 @@ remove_col <- function(df) {
   
   df[, cols_presentes, drop = FALSE]
 }
+
 eleicoes_mg <- remove_col(eleicoes_mg)
 eleicoes_sp <- remove_col(eleicoes_sp)
 
@@ -44,10 +46,17 @@ eleicoes <- eleicoes%>%
   mutate(Vit_bol = if_else(Bolso > Hadad, 1, 0)) %>%
   select(sg_uf, nm_municipio, Vit_bol)
 glimpse(eleicoes)
-# Padronizar nomes das colunas de cruzamento nas duas tabelas
-all.equal(eleicoes$nm_municipio,Covid19MGSP$Município)
-eleicoes$nm_municipio <- 
 
-covid_mun_col <- if ("MUNICIPIO" %in% names(covid_data)) "MUNICIPIO" else if ("NOME" %in% names(covid_data)) "NOME" else names(covid_data)[1]
-covid_uf_col <- if ("UF" %in% names(covid_data)) "UF" else if ("ESTADO" %in% names(covid_data)) "ESTADO" else names(covid_data)[2]
+a <- 0
+for(i in 1: length(Covid19MGSP$Município)){
+  if(Covid19MGSP[i,1]==eleicoes[i,1])
+    a <- a+1
+}
+a#se a tiver diferente de zero eu vou ter que ajustar os dados 
 
+Covid19MGSP$Vit_bolso <- eleicoes$Vit_bol
+
+write.csv2(Covid19MGSP, 
+           file = "Covid19MGSP_modificado.csv", 
+           row.names = FALSE, 
+           fileEncoding = "UTF-8")
